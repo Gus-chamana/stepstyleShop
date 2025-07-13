@@ -1,7 +1,7 @@
 /*
 Custom Css
 */
-html, body {
+tml, body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -13,14 +13,10 @@ body {
   flex-direction: column;
 }
 
-.contenido {
+main.contenido {
   flex: 1 0 auto;
 }
 
-#tempaltemo_footer {
+footer, #tempaltemo_footer {
   flex-shrink: 0;
-  background-color: #212934; /* Cambia si usas otro color */
-  margin: 0;
-  padding: 20px 0;
-  border: none;
 }

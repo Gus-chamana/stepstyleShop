@@ -1,0 +1,45 @@
+    <head th:replace="~{fragments/header :: head}"></head>
+    <title>Checkout</title>
+
+<body>
+
+    <!-- Navbar o Encabezado de página -->
+
+    <nav th:replace="~{fragments/header :: header}"></nav>
+
+    <!-- Contenido del checkout -->
+
+    <main class="contenido">
+        <div class="container py-5">
+            <h2 class="mb-4">Finalizar Compra</h2>
+            <h4>Resumen del Pedido</h4>
+            <ul>
+                <li>Producto 1 x1 - $100</li>
+                <!-- ... -->
+            </ul>
+            <p>Total: $100</p>
+            <h4 class="mt-4">Datos de Envío y Pago</h4>
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">Dirección de Envío</label>
+                    <input type="text" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Método de Pago</label>
+                    <select class="form-select" required>
+                        <option>Tarjeta de Crédito</option>
+                        <option>Transferencia</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">Confirmar Venta</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer y scripts -->
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+    <div th:replace="~{fragments/footer :: scripts}"></div>
+
+</body>
+</html>

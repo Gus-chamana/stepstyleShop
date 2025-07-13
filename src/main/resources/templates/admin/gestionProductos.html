@@ -1,0 +1,66 @@
+    <head th:replace="~{fragments/header :: head}"></head>
+    <title>Gestión de Productos</title>
+
+<body>
+    <!-- Navbar o Encabezado de página -->
+    <nav th:replace="~{fragments/header :: header}"></nav>
+
+    <!-- Container de gestionProductos -->
+    <main class="contenido">
+        <div class="container py-5">
+            <h2 class="mb-4">Gestión de Productos</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Producto 1</td>
+                        <td>$100</td>
+                        <td>10</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm">Editar</button>
+                            <button class="btn btn-danger btn-sm">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4 class="mt-5">Agregar/Editar Producto</h4>
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Descripción</label>
+                    <textarea class="form-control" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Precio</label>
+                    <input type="number" class="form-control" min="0.01" step="0.01" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Stock</label>
+                    <input type="number" class="form-control" min="1" required>
+                </div>
+                    <div class="mb-3">
+                        <label class="form-label">Imagen</label>
+                        <input type="file" class="form-control">
+                    </div>
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer y scripts -->
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+    <div th:replace="~{fragments/footer :: scripts}"></div>
+
+</body>
+</html>

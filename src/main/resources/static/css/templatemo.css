@@ -140,7 +140,13 @@ body, ul, li, p, a, label, input, div {
 #tempaltemo_footer ul.footer-icons li {
   width: 2.6em;
   height: 2.6em;
-  line-height: 2.6em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #dcdde1;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
 }
 #tempaltemo_footer ul.footer-icons li:hover {
   background-color: #cfd6e1;
