@@ -1,8 +1,10 @@
-    <head th:replace="~{fragments/header :: head}"></head>
-    <title>Gestión de Productos</title>
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: head(pageTitle='Gestion Productos')}"></head>
 
 <body>
-    <!-- Navbar o Encabezado de página -->
+    <!-- Header -->
     <nav th:replace="~{fragments/header :: header}"></nav>
 
     <!-- Container de gestionProductos -->

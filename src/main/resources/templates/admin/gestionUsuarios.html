@@ -1,9 +1,12 @@
-    <head th:replace="~{fragments/header :: head}"></head>
-    <title>Gestión de Usuarios</title>
-<body>
-    <!-- Navbar o Encabezado de página -->
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 
+<head th:replace="~{fragments/header :: head(pageTitle='Gestion Usuarios')}"></head>
+
+<body>
+    <!-- Header -->
     <nav th:replace="~{fragments/header :: header}"></nav>
+
     <!-- Contenido de la página gestionUsuarios -->
     <main class="contenido">
         <div class="container py-5">

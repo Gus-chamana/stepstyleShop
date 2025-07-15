@@ -1,50 +1,55 @@
-<head th:replace="~{fragments/header :: head}"></head>
-<title>Iniciar Sesión | StepStyle Shop</title>
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: head(pageTitle='Iniciar Sesion')}"></head>
 
 <body>
-    <!-- Navbar o Encabezado de página -->
+<nav th:replace="~{fragments/header :: header}"></nav>
 
-    <nav th:replace="~{fragments/header :: header}"></nav>
+<main class="contenido">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card shadow">
+                    <div class="card-body p-4">
+                        <h2 class="h2 text-center text-success mb-4">Iniciar Sesión</h2>
 
-    <!-- Contenido de la página -->
-    <main class="contenido">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-md-6 col-lg-5">
-                    <div class="card shadow">
-                        <div class="card-body p-4">
-                            <h2 class="h2 text-center text-success mb-4">Iniciar Sesión</h2>
-                            <form>
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">Usuario o Correo</label>
-                                    <input type="text" class="form-control" id="username" placeholder="Ingresa tu usuario o correo" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">Contraseña</label>
-                                    <input type="password" class="form-control" id="password" placeholder="Contraseña" required>
-                                </div>
-                                <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="remember">
-                                    <label class="form-check-label" for="remember">Recordarme</label>
-                                </div>
-                                <button type="submit" class="btn btn-success w-100">Ingresar</button>
-                            </form>
-                            <div class="mt-3 text-center">
-                                <span>¿No tienes cuenta? <a th:href="@{/register}" class="text-success">Regístrate</a></span>
+                        <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                            Correo o contraseña incorrectos. Por favor, inténtalo de nuevo.
+                        </div>
+
+                        <form th:action="@{/login}" method="post">
+                            <div class="mb-3">
+                                <label for="correo" class="form-label">Correo Electrónico</label>
+                                <input type="email" class="form-control" id="correo" name="correo" placeholder="Ingresa tu correo" required>
                             </div>
-                            <div class="mt-2 text-center">
-                                <a href="#" class="text-muted">¿Olvidaste tu contraseña?</a>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required>
                             </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="remember" name="remember-me">
+                                <label class="form-check-label" for="remember">Recordarme</label>
+                            </div>
+
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+                            <button type="submit" class="btn btn-success w-100">Ingresar</button>
+                        </form>
+                        <div class="mt-3 text-center">
+                            <span>¿No tienes cuenta? <a th:href="@{/register}" class="text-success">Regístrate</a></span>
+                        </div>
+                        <div class="mt-2 text-center">
+                            <a href="#" class="text-muted">¿Olvidaste tu contraseña?</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
-    <!-- Footer y scripts -->
-
-    <footer th:replace="~{fragments/footer :: footer}"></footer>
-    <div th:replace="~{fragments/footer :: scripts}"></div>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+<div th:replace="~{fragments/footer :: scripts}"></div>
 </body>
 </html>

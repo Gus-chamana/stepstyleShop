@@ -1,9 +1,10 @@
-    <head th:replace="~{fragments/header :: head}"></head>
-    <title>StepStyle Shop - Página de Productos</title>
+<!DOCTYPE html>
+    <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{fragments/header :: head(pageTitle='Tienda')}"></head>
 
 <body>
-
-    <!-- Navbar o Encabezado de página -->
+    <!-- Header -->
     <nav th:replace="~{fragments/header :: header}"></nav>
 
     <!-- Contenido de la página productos -->

@@ -1,58 +1,64 @@
-    <head th:replace="~{fragments/header :: head}"></head>
-    <title>Panel de Administración</title>
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: head(pageTitle='Panel Admin')}"></head>
 
 <body>
-    <!-- Navbar o Encabezado de página -->
+<!-- Header -->
+<nav th:replace="~{fragments/header :: header}"></nav>
 
-    <nav th:replace="~{fragments/header :: header}"></nav>
+<main class="contenido">
+    <div class="container py-5">
 
-    <!--  Inicia página PanelAdmin  -->
-    <main class="contenido">
-        <div class="container py-5">
-            <h2 class="mb-4">Panel de Administración</h2>
-            <div class="row mb-4">
-                <div class="col-md-4">
-                    <div class="card text-bg-primary mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Usuarios Registrados</h5>
-                            <p class="card-text fs-2">120</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card text-bg-success mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Ventas del Mes</h5>
-                            <p class="card-text fs-2">$5,000</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card text-bg-warning mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Stock Bajo</h5>
-                            <p class="card-text fs-2">3 productos</p>
-                        </div>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0">Panel de Administración de <span class="text-success" sec:authentication="principal.username">Usuario</span></h2>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-outline-danger">Cerrar Sesión</button>
+            </form>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card text-bg-primary mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Usuarios Registrados</h5>
+                        <p class="card-text fs-2">120</p>
                     </div>
                 </div>
             </div>
-            <div class="row g-3">
-                <div class="col-md-4">
-                    <a href="gestionUsuarios.html" class="btn btn-outline-primary w-100 py-4 fs-5">Gestionar Usuarios</a>
+            <div class="col-md-4">
+                <div class="card text-bg-success mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Ventas del Mes</h5>
+                        <p class="card-text fs-2">$5,000</p>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <a href="gestionProductos.html" class="btn btn-outline-success w-100 py-4 fs-5">Gestionar Productos</a>
-                </div>
-                <div class="col-md-4">
-                    <a href="gestionVentas.html" class="btn btn-outline-info w-100 py-4 fs-5">Ver Ventas</a>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-bg-warning mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Stock Bajo</h5>
+                        <p class="card-text fs-2">3 productos</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </main>
 
-    <!-- Footer y scripts -->
+        <div class="row g-3">
+            <div class="col-md-4">
+                <a href="#" class="btn btn-outline-primary w-100 py-4 fs-5 disabled">Gestionar Usuarios</a>
+            </div>
+            <div class="col-md-4">
+                <a th:href="@{/productos/nuevo}" class="btn btn-outline-success w-100 py-4 fs-5">Gestionar Productos</a>
+            </div>
+            <div class="col-md-4">
+                <a href="#" class="btn btn-outline-info w-100 py-4 fs-5 disabled">Ver Ventas</a>
+            </div>
+        </div>
+    </div>
+</main>
 
-    <footer th:replace="~{fragments/footer :: footer}"></footer>
-    <div th:replace="~{fragments/footer :: scripts}"></div>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+<div th:replace="~{fragments/footer :: scripts}"></div>
 </body>
 </html>

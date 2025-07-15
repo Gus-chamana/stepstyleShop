@@ -1,38 +1,18 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 
-    <head th:replace="~{fragments/header :: head}"></head>
-
-    <title>StepStyle Shop</title>
+<head th:replace="~{fragments/header :: head(pageTitle='Inicio')}"></head>
 
 <body>
+<!-- Encabezado o header -->
+<nav th:replace="~{fragments/header :: header}"></nav>
 
-    <!-- Navbar o Encabezado de página -->
-
-    <nav th:replace="~{fragments/header :: header}"></nav>
-
-    <!-- Carrosusel -->
-    <main class="contenido">
+<!-- Página principal - index-->
+<main class="contenido">
     <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="w-100 pt-1 mb-5 text-right">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-            </div>
-            <form action="" method="get" class="modal-content modal-body border-0 p-0">
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Buscar ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
-                        <i class="fa fa-fw fa-search text-white"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
     </div>
 
     <div id="template-mo-stepstyle-hero-carousel" class="carousel slide" data-bs-ride="carousel">
-        <!-- <ol class="carousel-indicators">
-            <li data-bs-target="#template-mo-stepstyle-hero-carousel" data-bs-slide-to="0" class="active"></li>
-            <li data-bs-target="#template-mo-stepstyle-hero-carousel" data-bs-slide-to="1"></li>
-            <li data-bs-target="#template-mo-stepstyle-hero-carousel" data-bs-slide-to="2"></li>
-        </ol> -->
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="container">
@@ -99,8 +79,6 @@
         </a>
     </div>
 
-<!--  Categorías  -->
-
     <section class="container py-5">
         <div class="row text-center pt-3">
             <div class="col-lg-6 m-auto">
@@ -112,24 +90,22 @@
         </div>
         <div class="row">
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="/img/category_img_01.jpg" class="rounded-circle img-fluid border"></a>
+                <a th:href="@{/shop}"><img src="/img/category_img_01.jpg" class="rounded-circle img-fluid border"></a>
                 <h5 class="text-center mt-3 mb-3">Relojes</h5>
-                <p class="text-center"><a class="btn btn-success">Ir a la Tienda</a></p>
+                <p class="text-center"><a class="btn btn-success" th:href="@{/shop}">Ir a la Tienda</a></p>
             </div>
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="/img/category_img_02.jpg" class="rounded-circle img-fluid border"></a>
+                <a th:href="@{/shop}"><img src="/img/category_img_02.jpg" class="rounded-circle img-fluid border"></a>
                 <h2 class="h5 text-center mt-3 mb-3">Zapatos</h2>
-                <p class="text-center"><a class="btn btn-success">Ir a la Tienda</a></p>
+                <p class="text-center"><a class="btn btn-success" th:href="@{/shop}">Ir a la Tienda</a></p>
             </div>
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="/img/category_img_03.jpg" class="rounded-circle img-fluid border"></a>
+                <a th:href="@{/shop}"><img src="/img/category_img_03.jpg" class="rounded-circle img-fluid border"></a>
                 <h2 class="h5 text-center mt-3 mb-3">Accesorios</h2>
-                <p class="text-center"><a class="btn btn-success">Ir a la Tienda</a></p>
+                <p class="text-center"><a class="btn btn-success" th:href="@{/shop}">Ir a la Tienda</a></p>
             </div>
         </div>
     </section>
-
-    <!-- Productos Destacados -->
 
     <section class="bg-light">
         <div class="container py-5">
@@ -142,11 +118,10 @@
                     </p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 col-md-4 mb-4">
+            <div class="row" th:if="${!productos.isEmpty()}">
+                <div class="col-12 col-md-4 mb-4" th:each="producto : ${productos.subList(0, T(java.lang.Math).min(productos.size(), 3))}">
                     <div class="card h-100">
-                        <a href="public/shop-single.html">
-                            <img src="/img/feature_prod_01.jpg" class="card-img-top" alt="...">
+                        <a href="public/shop-single.html"> <img th:src="@{${producto.imagenUrl != null ? producto.imagenUrl : '/img/default-product.png'}}" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
@@ -157,74 +132,23 @@
                                     <i class="text-muted fa fa-star"></i>
                                     <i class="text-muted fa fa-star"></i>
                                 </li>
-                                <li class="text-muted text-right">S/240.00</li>
+                                <li class="text-muted text-right" th:text="'S/ ' + ${#numbers.formatDecimal(producto.precio, 1, 'COMMA', 2, 'POINT')}">S/0.00</li>
                             </ul>
-                            <a href="public/shop-single.html" class="h2 text-decoration-none text-dark">Botella Deportiva</a>
-                            <p class="card-text">
-                                Botella deportiva de 1.3 litros de capacidad de la marca Mountain Gear.
+                            <a href="public/shop-single.html" class="h2 text-decoration-none text-dark" th:text="${producto.nombre}">Nombre Producto</a>
+                            <p class="card-text" th:text="${producto.descripcion}">
+                                Descripción del producto.
                             </p>
                             <p class="text-muted">Reseñas (24)</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="public/shop-single.html">
-                            <img src="/img/feature_prod_02.jpg" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                                <li class="text-muted text-right">S/480.00</li>
-                            </ul>
-                            <a href="public/shop-single.html" class="h2 text-decoration-none text-dark">Zapatillas Mujer Nike</a>
-                            <p class="card-text">
-                                Zapatillas Nike para mujer, ideales para correr y hacer ejercicio. Urbanas blanco court royale.
-                            </p>
-                            <p class="text-muted">Reseñas (48)</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="public/shop-single.html">
-                            <img src="/img/feature_prod_03.jpg" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                </li>
-                                <li class="text-muted text-right">S/360.00</li>
-                            </ul>
-                            <a href="public/shop-single.html" class="h2 text-decoration-none text-dark">Zapatos Adidas Samba</a>
-                            <p class="card-text">
-                                Zapatos Adidas Samba, ligeros y cómodos para el clima cálido.
-                            </p>
-                            <p class="text-muted">Reseñas (74)</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    </main>
+</main>
 
-    <!-- Footer y scripts -->
-
-    <footer th:replace="~{fragments/footer :: footer}"></footer>
-    <div th:replace="~{fragments/footer :: scripts}"></div>
-
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+<div th:replace="~{fragments/footer :: scripts}"></div>
 </body>
 
 </html>

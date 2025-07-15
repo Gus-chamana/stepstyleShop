@@ -1,12 +1,11 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 
-    <head th:replace="~{fragments/header :: head}"></head>
-
-    <title>Sobre Nosotros - StepStyle</title>
+<head th:replace="~{fragments/header :: head(pageTitle='Acerca de ')}"></head>
 
 <body>
 
-    <!-- Navbar o Encabezado de página -->
-    <nav th:replace="~{fragments/header :: header}"></nav>
+<nav th:replace="~{fragments/header :: header}"></nav>
 
     <!-- Contenido de la página -->
     <main class="contenido">

@@ -9,21 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PublicController {
 
-    // --- PÁGINAS PRINCIPALES ---
-    @GetMapping("/")
-    public String showHomePage() {
-        return "index"; // Muestra templates/index.html
-    }
 
-    @GetMapping("/login")
-    public String showLoginPage() {
-        return "login"; // Muestra templates/login.html
-    }
-
-    @GetMapping("/register")
-    public String showRegisterPage() {
-        return "register"; // Muestra templates/register.html
-    }
 
     // --- PÁGINAS DE LA TIENDA (Carpeta /public) ---
     @GetMapping("/shop")

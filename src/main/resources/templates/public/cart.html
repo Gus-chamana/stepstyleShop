@@ -1,11 +1,13 @@
-  <head th:replace="~{fragments/header :: head}"></head>
-  <title>Carrito de Compras</title>
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: head(pageTitle='Carrito')}"></head>
+
 <body>
-  <!-- Navbar o Encabezado de página -->
+<!-- Header -->
+<nav th:replace="~{fragments/header :: header}"></nav>
 
-  <nav th:replace="~{fragments/header :: header}"></nav>
-
-  <!-- Contenido de la página-->
+<!-- Contenido de la página-->
   <main class="contenido">
     <div class="container py-5">
       <div class="row">
